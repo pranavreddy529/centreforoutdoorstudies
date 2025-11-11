@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Main Pages
 import Home from "./pages/Home";
-import Adventurer from "./pages/adventurer";
+import Adventurer from "./pages/Adventurer";
 import TideTrail from "./pages/Tide-trail";
 import Himayalas from "./pages/himayalas";
 import AboutUs from "./pages/about-us";
