@@ -1,0 +1,15 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Amulya:wght@400;700&display=swap');
+
+@keyframes scroll {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
+}
+
+.animate-scroll {
+	animation: scroll 30s linear infinite;
+}
