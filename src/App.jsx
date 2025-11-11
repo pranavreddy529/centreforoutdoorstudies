@@ -13,7 +13,7 @@ import ContactForm from "./components/contact";
 import Adventure from "./pages/Adventure";
 
 // Program Pages
-import Payaniga from "./pages/payaniga";
+import Payaniga from "./pages/Payaniga";
 
 // Testimonials
 import AdventurerTestimonials from "./components/AdventurerTestimonials";
