@@ -32,7 +32,7 @@ export default function App() {
         <Route path="/contact" element={<ContactForm />} />
 
         {/* Program Pages */}
-        <Route path="/adventurer" element={<Adventurer />} />
+        <Route path="/Adventurer" element={<Adventurer />} />
         <Route path="/tide-trail" element={<TideTrail />} />
         <Route path="/himayalas" element={<Himayalas />} />
         <Route path="/payaniga" element={<Payaniga />} />
