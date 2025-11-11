@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Main Pages
 import Home from "./pages/Home";
-import Adventurer from "./pages/adventurer";
+
 import TideTrail from "./pages/Tide-trail";
-import Himayalas from "./pages/himayalas";
+import Himayalas from "./pages/Himayalas";
 import AboutUs from "./pages/about-us";
 import Blog from "./components/blog";
 import BlogDetail from "./components/BlogDetail";
 import ContactForm from "./components/contact";
+import Adventurer from "./pages/adventurer";
 
 // Program Pages
 import Payaniga from "./pages/payaniga";
@@ -32,10 +33,11 @@ export default function App() {
         <Route path="/contact" element={<ContactForm />} />
 
         {/* Program Pages */}
-        <Route path="/Adventurer" element={<Adventurer />} />
+      
         <Route path="/tide-trail" element={<TideTrail />} />
         <Route path="/himayalas" element={<Himayalas />} />
         <Route path="/payaniga" element={<Payaniga />} />
+        <Route path="/adventurer" element={<Adventurer />} />
 
         {/* Testimonials */}
         <Route path="/adventurer-testimonials" element={<AdventurerTestimonials />} />
