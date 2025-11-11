@@ -2,7 +2,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import HimayalasTestimonials from "../components/himayalasTestimonials";
+import HimayalasTestimonials from "../components/Testimonials";
 
 export default function Himayalas() {
   return (

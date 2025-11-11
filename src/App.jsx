@@ -19,7 +19,7 @@ import Payaniga from "./pages/Payaniga";
 import AdventurerTestimonials from "./components/AdventurerTestimonials";
 import PayanigaTestimonials from "./components/PayanigaTestimonials";
 import TideTrailTestimonials from "./components/TidetrailTestimonials";
-import HimayalasTestimonials from "./components/himayalasTestimonials";
+import Testimonials from "./components/Testimonials";
 
 export default function App() {
   return (
@@ -42,7 +42,7 @@ export default function App() {
         {/* Testimonials */}
         <Route path="/adventurer-testimonials" element={<AdventurerTestimonials />} />
         <Route path="/tide-trail-testimonials" element={<TideTrailTestimonials />} />
-        <Route path="/himayalas-testimonials" element={<HimayalasTestimonials />} />
+        <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/payaniga-testimonials" element={<PayanigaTestimonials />} />
       </Routes>
     </Router>
