@@ -10,7 +10,7 @@ import AboutUs from "./pages/about-us";
 import Blog from "./components/blog";
 import BlogDetail from "./components/BlogDetail";
 import ContactForm from "./components/contact";
-import Adventurer from "./pages/adventurer";
+import Adventure from "./pages/Adventure";
 
 // Program Pages
 import Payaniga from "./pages/payaniga";
@@ -37,7 +37,7 @@ export default function App() {
         <Route path="/tide-trail" element={<TideTrail />} />
         <Route path="/himayalas" element={<Himayalas />} />
         <Route path="/payaniga" element={<Payaniga />} />
-        <Route path="/adventurer" element={<Adventurer />} />
+        <Route path="/adventure" element={<Adventure />} />
 
         {/* Testimonials */}
         <Route path="/adventurer-testimonials" element={<AdventurerTestimonials />} />
