@@ -85,17 +85,14 @@ const AboutUs = () => {
     <div className="text-gray-800">
       <Navbar />
 
-      {/* =================== HERO SECTION (Vision & Mission overlay — NO blur-box) =================== */}
+      {/* =================== HERO SECTION =================== */}
       <section
         className="relative h-screen bg-cover bg-center flex items-center text-white"
         style={{ backgroundImage: "url('/hero.jpg')" }}
       >
-        {/* Slight dark overlay for improved contrast */}
         <div className="absolute inset-0 bg-black/40"></div>
 
-        {/* Content container: left hero text, right vision/mission */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 flex flex-col md:flex-row items-center justify-between">
-          {/* Left Side — Hero Text */}
           <div className="text-center md:text-left max-w-lg mb-12 md:mb-0">
             <motion.h1
               initial={{ opacity: 0, y: -30 }}
@@ -116,7 +113,6 @@ const AboutUs = () => {
             </motion.p>
           </div>
 
-          {/* Right Side — Vision & Mission text directly on image */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -155,7 +151,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* =================== RESPONSIBLE LIVING / ETHOS =================== */}
+      {/* =================== ETHOS =================== */}
       <section className="py-20 px-6 md:px-24 bg-white text-left">
         <motion.h3
           initial={{ opacity: 0, x: -30 }}
@@ -188,7 +184,7 @@ const AboutUs = () => {
         </motion.p>
       </section>
 
-      {/* =================== IMAGE SECTION (SDG / custom image + button aligned left) =================== */}
+      {/* =================== IMAGE SECTION =================== */}
       <section className="py-16 bg-white text-center">
         <motion.img
           src="/image.png"
@@ -238,10 +234,9 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* =================== FEATURE SECTION (Simplified / updated layout) =================== */}
+      {/* =================== FEATURE SECTION =================== */}
       <section className="w-full max-w-6xl mx-auto border border-gray-300 rounded-md overflow-hidden bg-white mb-20 relative">
         <div className="flex flex-col md:flex-row h-full">
-          {/* Left rotated label (visible on md+) */}
           <div className="hidden md:flex items-center justify-center w-12 border-r border-gray-300">
             <p className="text-sm font-medium text-gray-700 rotate-[-90deg] whitespace-nowrap">
               {features.find((f) => f.id === active)?.title.replace(
@@ -251,7 +246,6 @@ const AboutUs = () => {
             </p>
           </div>
 
-          {/* Main content */}
           <div className="flex-1 p-8">
             <p className="text-green-600 font-semibold text-lg mb-3">
               {String(active).padStart(2, "0")}
@@ -286,7 +280,6 @@ const AboutUs = () => {
             </AnimatePresence>
           </div>
 
-          {/* Right small vertical numeric buttons */}
           <div className="flex md:flex-col border-t md:border-t-0 md:border-l border-gray-300">
             {features.map((f) => (
               <button
@@ -305,7 +298,6 @@ const AboutUs = () => {
             ))}
           </div>
 
-          {/* Right rotated labels (md+) */}
           <div className="hidden md:flex flex-col justify-between border-l border-gray-300">
             {features.map((f) => (
               <button
@@ -324,7 +316,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* =================== TEAM GRID (3 people) =================== */}
+      {/* =================== TEAM GRID =================== */}
       <section className="py-20 bg-white text-center">
         <motion.h2
           className="text-3xl font-bold mb-6"
@@ -360,10 +352,10 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* =================== OUR TEAM SCROLL SECTION (PAUSE ON HOVER) =================== */}
+      {/* =================== OUR TEAM SCROLL SECTION =================== */}
       <section className="py-20 bg-white text-center overflow-hidden">
         <motion.h2
-          className="text-4xl md:text-5xl  mb-10 bg-black bg-clip-text text-transparent font-amulya"
+          className="text-4xl md:text-5xl mb-10 bg-black bg-clip-text text-transparent font-amulya"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -379,27 +371,42 @@ const AboutUs = () => {
   );
 };
 
-// =================== AUTO-SCROLL TEAM COMPONENT ===================
+// =================== AUTO-SCROLL TEAM COMPONENT (fixed) ===================
 const AutoScrollTeam = () => {
   const controls = useAnimation();
   const [isPaused, setIsPaused] = useState(false);
-  const speed = 70; // seconds for one loop (adjust to taste)
+  const [xPosition, setXPosition] = useState(0);
+  const speed = 70;
 
   useEffect(() => {
+    let animationFrameId;
+
+    const trackPosition = async () => {
+      const transform = await controls.get();
+      if (transform?.x !== undefined) {
+        setXPosition(transform.x);
+      }
+      animationFrameId = requestAnimationFrame(trackPosition);
+    };
+
     if (!isPaused) {
       controls.start({
-        x: ["0%", "-50%"],
+        x: [xPosition, "-50%"],
         transition: {
           repeat: Infinity,
           repeatType: "loop",
-          duration: speed,
+          duration: (speed * (50 + parseFloat(xPosition))) / 50,
           ease: "linear",
         },
       });
+      animationFrameId = requestAnimationFrame(trackPosition);
     } else {
+      cancelAnimationFrame(animationFrameId);
       controls.stop();
     }
-  }, [isPaused, controls]);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isPaused, controls, xPosition]);
 
   return (
     <div className="relative overflow-hidden">

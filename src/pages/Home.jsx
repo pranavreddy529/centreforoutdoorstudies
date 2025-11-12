@@ -23,20 +23,17 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 2 }}
         >
-          <video
-            className="w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-          >
-            
-            <source src="/Kayak-bg.mp4" type="video/mp4" />
-
-           
-            Your browser does not support the video tag.
-          </video>
+<video
+  className="w-full h-full object-cover"
+  autoPlay
+  loop
+  muted
+  playsInline
+  preload="auto"
+>
+  <source src="https://res.cloudinary.com/dht4kfngd/video/upload/q_auto,f_auto/Kayak-bg_rw24gi.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
           <div className="absolute inset-0 bg-black/40"></div>
         </motion.div>
 

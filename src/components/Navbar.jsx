@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hoverPrograms, setHoverPrograms] = useState(false);
+  const [mobileProgramsOpen, setMobileProgramsOpen] = useState(false);
   const location = useLocation();
 
   // Detect if we are on Contact, Blog, or Blog Detail page
@@ -43,7 +44,7 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* =================== NAV LINKS =================== */}
+        {/* =================== DESKTOP NAV LINKS =================== */}
         <ul className={`hidden md:flex items-center space-x-10 text-sm font-medium ${textColor}`}>
           <li className={`${hoverColor} transition-colors`}>
             <Link to="/about-us">ABOUT US</Link>
@@ -82,10 +83,10 @@ export default function Navbar() {
                       Our Programs
                     </h4>
                     <Link
-                      to="/adventurer"
+                      to="/adventure"
                       className={`text-xl font-medium ${hoverColor} transition-colors`}
                     >
-                      The Adventurer
+                      The Adventure
                     </Link>
                     <Link
                       to="/tide-trail"
@@ -94,13 +95,13 @@ export default function Navbar() {
                       Tide Trail
                     </Link>
                     <Link
-                      to="/Himayalas"
+                      to="/himayalas"
                       className={`text-xl font-medium ${hoverColor} transition-colors`}
                     >
                       Himayalas
                     </Link>
                     <Link
-                      to="/Payaniga"
+                      to="/payaniga"
                       className={`text-xl font-medium ${hoverColor} transition-colors`}
                     >
                       Payaniga
@@ -184,13 +185,57 @@ export default function Navbar() {
               ABOUT US
             </Link>
 
-            <Link
-              to="/adventurer"
-              onClick={() => setMenuOpen(false)}
-              className={`text-xl ${hoverColor} transition-colors`}
-            >
-              PROGRAMS
-            </Link>
+            {/* =================== MOBILE PROGRAMS DROPDOWN =================== */}
+            <div className="flex flex-col items-center">
+              <button
+                onClick={() => setMobileProgramsOpen(!mobileProgramsOpen)}
+                className={`text-xl flex items-center gap-2 ${hoverColor} transition-colors`}
+              >
+                PROGRAMS
+                {mobileProgramsOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+              </button>
+
+              <AnimatePresence>
+                {mobileProgramsOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex flex-col mt-4 space-y-3 text-lg"
+                  >
+                    <Link
+                      to="/adventure"
+                      onClick={() => setMenuOpen(false)}
+                      className={`${hoverColor} transition-colors`}
+                    >
+                      The Adventure
+                    </Link>
+                    <Link
+                      to="/tide-trail"
+                      onClick={() => setMenuOpen(false)}
+                      className={`${hoverColor} transition-colors`}
+                    >
+                      Tide Trail
+                    </Link>
+                    <Link
+                      to="/himayalas"
+                      onClick={() => setMenuOpen(false)}
+                      className={`${hoverColor} transition-colors`}
+                    >
+                      Himayalas
+                    </Link>
+                    <Link
+                      to="/payaniga"
+                      onClick={() => setMenuOpen(false)}
+                      className={`${hoverColor} transition-colors`}
+                    >
+                      Payaniga
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             <Link
               to="/blog"
